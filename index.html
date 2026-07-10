@@ -438,55 +438,94 @@ footer small{font-size:12.5px}
   </div>
 </div>
 
-<!-- ================= LEAD FORM ================= -->
 <div class="form-section" id="form-section">
   <div class="form-card">
     <div class="eyebrow"><span class="line"></span>سجّل الآن<span class="line"></span></div>
     <p class="sub">املأ البيانات وسيتواصل معك فريقنا خلال 24 ساعة لتهيئة نظامك.</p>
-    <form onsubmit="event.preventDefault(); alert('شكراً لتسجيلكم، سيتواصل معكم فريقنا قريباً.');">
-      <div class="form-group">
-        <label for="inst-name">اسم المؤسسة</label>
-        <input id="inst-name" type="text" placeholder="مثال: مدرسة النور الخاصة" required>
-      </div>
+
+    <!-- وسم الاستمارة المربوط بـ Formspree -->
+    <!-- تنبيه: استبدل عبارة YOUR_FORM_ID بمعرف حسابك الحقيقي من الموقع -->
+    <form action="https://formspree.io/f/maqgrlyj" method="POST">
+      
       <div class="form-row">
+        <!-- نوع المؤسسة -->
         <div class="form-group">
           <label for="inst-type">نوع المؤسسة</label>
-          <select id="inst-type" required>
+          <select id="inst-type" name="نوع المؤسسة" required>
             <option value="">اختر النوع</option>
-
-            <option>مدرسة ابتدائية متوسطة / ثانوية</option>
-            <option>مدرسة تعليم اللغات الاجنبية</option>
-             <option>مركز دعم مدرسي</option>
-            <option>مركز تكوين مهني</option>
-            <option>مدرسة / دار تحفيظ قرآن</option>
-            <option>روضة أطفال</option>
-
+            <option value="مدرسة ابتدائية متوسطة / ثانوية">مدرسة ابتدائية متوسطة / ثانوية</option>
+            <option value="مدرسة تعليم اللغات الاجنبية">مدرسة تعليم اللغات الاجنبية</option>
+            <option value="مركز دعم مدرسي">مركز دعم مدرسي</option>
+            <option value="مركز تكوين مهني">مركز تكوين مهني</option>
+            <option value="مدرسة / دار تحفيظ قرآن">مدرسة / دار تحفيظ قرآن</option>
+            <option value="روضة أطفال">روضة أطفال</option>
           </select>
         </div>
+        
+        <!-- عدد التلاميذ -->
         <div class="form-group">
           <label for="inst-size">عدد التلاميذ التقريبي</label>
-          <select id="inst-size" required>
+          <select id="inst-size" name="عدد التلاميذ التقريبي" required>
             <option value="">اختر الفئة</option>
-            <option>أقل من 100</option>
-            <option>100 - 300</option>
-            <option>300 - 600</option>
-            <option>أكثر من 600</option>
+            <option value="أقل من 100">أقل من 100</option>
+            <option value="100 - 300">100 - 300</option>
+            <option value="300 - 600">300 - 600</option>
+            <option value="أكثر من 600">أكثر من 600</option>
           </select>
         </div>
       </div>
+
+      <!-- اختيار الباقة -->
+      <div class="form-group" style="margin-bottom: 1.2rem;">
+        <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: var(--text-main);">اختر الباقة المناسبة لمؤسستك:</label>
+        <select name="الباقة المطلوبة" required style="width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 8px; font-family: 'Cairo', sans-serif; font-size: 0.95rem; background: #fff; outline: none;">
+          <option value="" disabled selected>اضغط لتحديد الباقة...</option>
+          <option value="الباقة المحمولة (أوفلاين)">باقة SYSCO المحمولة (أوفلاين - فلاش ديسك)</option>
+          <option value="الباقة السحابية (أونلاين)">باقة SYSCO السحابية (أونلاين - اشتراك سنوي)</option>
+          <option value="الباقة الهجينة (المخصصة)">باقة SYSCO (للمجمعات)</option>
+        </select>
+      </div>
+
       <div class="form-row">
+        <!-- رقم الهاتف -->
         <div class="form-group">
           <label for="phone">رقم الهاتف</label>
-          <input id="phone" type="tel" placeholder="05XX XX XX XX" required>
+          <!-- تم تغيير نوع الحقل وتسميته لضمان استقبال رقم هاتف العميل بنجاح -->
+          <input id="phone" name="رقم الهاتف" type="tel" placeholder="05XX XX XX XX" required style="text-align: right; direction: ltr;">
         </div>
+        
+        <!-- البريد الإلكتروني -->
         <div class="form-group">
           <label for="email">البريد الإلكتروني</label>
-          <input id="email" type="email" placeholder="example@email.com" required>
+          <!-- تم ربط اسم هذا الحقل مع البنية الافتراضية لـ Formspree للرد على العميل بنقرة زر -->
+          <input id="email" name="_replyto" type="email" placeholder="example@email.com" required style="text-align: left; direction: ltr;">
         </div>
       </div>
+
+      <!-- طريقة الدفع المفضلة -->
+      <div class="form-group" style="margin-bottom: 1.8rem;">
+        <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: var(--text-main);">طرق الدفع المقترحة:</label>
+        <select name="طريقة الدفع المفضلة" required style="width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 8px; font-family: 'Cairo', sans-serif; font-size: 0.95rem; background: #fff; outline: none;">
+          <option value="" disabled selected>اختر طريقة الدفع المناسبة لك...</option>
+          <option value="بريدي موب (BaridiMob)">تطبيق بريدي موب (BaridiMob)</option>
+          <option value="الحساب البريدي الجاري (CCP)">حوالة بريدية عبر الـ CCP</option>
+          <option value="الدفع عند الاستلام">الدفع عند الاستلام (فلاش ديسك)</option>
+        </select>
+      </div>
+
+      <!-- زر الإرسال -->
       <button type="submit" class="btn-submit">إرسال طلب التسجيل</button>
+
     </form>
   </div>
+</div>
+
+  </div>
+
+</div>
+
+
+  
 </div>
 
 <!-- ================= FOOTER ================= -->
